@@ -27,3 +27,6 @@ nbpm-*.tar
 
 # Ignore ASDF tool versions
 .tool-versions
+
+# VSCode settings
+.vscode/settings.json

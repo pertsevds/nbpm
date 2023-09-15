@@ -1,23 +1,57 @@
 defmodule NbpmTest do
   use ExUnit.Case
 
+  doctest Nbpm
+
+  def assert_name_to_port({input, expected}) do
+    assert {:ok, ^expected} = Nbpm.name_to_port(input)
+  end
+
+  def assert_node_to_port({input, expected}) do
+    assert {:port, ^expected, 5} = Nbpm.port_please(input, ~c"127.0.0.1", 5_000)
+  end
+
+  def assert_node_to_listen_port({input, expected}) do
+    assert {:ok, ^expected} = Nbpm.listen_port_please(input, ~c"127.0.0.1")
+  end
+
+  def nodes_ports do
+    [
+      {"88197my-random-name", 1_024},
+      {"18736my-random-name", 65_535},
+      {"my-random-name", 41_600},
+      {"my-random-name-12345", 12_345},
+      {"my-random-name12345", 12_345},
+      {"12345", 12_345},
+      {"rpc-random-name", 0},
+      {"rpc-random-name-12345", 0},
+      {"rpc-my-random-name12345", 0},
+      {"rpc-rem-my-random-name-12345", 0},
+      {"rpc-rem-my-random-name12345", 0},
+      {"rpc-12345", 0},
+      {"rpc12345", 12_345},
+      {"rem-random-sname", 0},
+      {"rem-random-sname-12345", 0},
+      {"rem-random-sname12345", 0},
+      {"rem-rpc-my-random-name-12345", 0},
+      {"rem-rpc-my-random-name12345", 0},
+      {"rem-12345", 0},
+      {"rem12345", 12_345}
+    ]
+  end
+
   describe "name_to_port/1" do
     test "converts valid node names to ports" do
-      assert {:ok, 12_345} = Nbpm.name_to_port(~c"my-node-12345")
-      assert {:ok, 0} = Nbpm.name_to_port(~c"rpc-random-name")
-      assert {:ok, 0} = Nbpm.name_to_port(~c"rem-random-sname")
-      assert {:ok, 12_345} = Nbpm.name_to_port(:"my-node-12345")
-      assert {:ok, 0} = Nbpm.name_to_port(:"rpc-random-name")
-      assert {:ok, 0} = Nbpm.name_to_port(:"rem-random-sname")
-    end
+      nodes_ports()
+      |> Enum.each(&assert_name_to_port/1)
 
-    test "handles invalid node names" do
-      assert {:error,
-              "Invalid node name format: invalid-node-name. It must be `name-port`, `rem-anything`, or `rpc-anything`."} =
-               Nbpm.name_to_port(~c"invalid-node-name")
+      nodes_ports()
+      |> Enum.map(fn {string, port} -> {to_charlist(string), port} end)
+      |> Enum.each(&assert_name_to_port/1)
 
-      assert {:error, "Invalid node name format: random-name. It must be `name-port`, `rem-anything`, or `rpc-anything`."} =
-               Nbpm.name_to_port(~c"random-name")
+      nodes_ports()
+      |> Enum.map(fn {string, port} -> {String.to_atom(string), port} end)
+      |> Enum.each(&assert_name_to_port/1)
     end
   end
 
@@ -35,48 +69,36 @@ defmodule NbpmTest do
 
   describe "register_node/3" do
     test "registers a node with a random creation" do
-      {:ok, creation} = Nbpm.register_node(~c"my-node", 12_345, :inet)
+      {:ok, creation} = Nbpm.register_node(~c"my-random-name-12345", 12_345, :inet)
       assert is_integer(creation)
     end
   end
 
   describe "port_please/3" do
     test "returns the port for a valid node name" do
-      assert {:port, 12_345, 5} = Nbpm.port_please(~c"my-node-12345", ~c"127.0.0.1", 5_000)
-      assert {:port, 0, 5} = Nbpm.port_please(~c"rpc-random-name", ~c"127.0.0.1", 5_000)
-      assert {:port, 0, 5} = Nbpm.port_please(~c"rem-random-sname", ~c"127.0.0.1", 5_000)
-    end
-
-    test "handles invalid node names" do
-      assert {:error,
-              "Invalid node name format: invalid-node-name. It must be `name-port`, `rem-anything`, or `rpc-anything`."} =
-               Nbpm.port_please(~c"invalid-node-name", ~c"127.0.0.1", 5_000)
-
-      assert {:error, "Invalid node name format: random-name. It must be `name-port`, `rem-anything`, or `rpc-anything`."} =
-               Nbpm.port_please(~c"random-name", ~c"127.0.0.1", 5_000)
+      Enum.each(nodes_ports(), &assert_node_to_port/1)
     end
   end
 
   describe "address_please/3" do
     test "returns the address for a given host and address family" do
-      assert {:ok, {127, 0, 0, 1}} = Nbpm.address_please("my-node-12345", ~c"localhost", :inet)
+      assert {:ok, {127, 0, 0, 1}} = Nbpm.address_please(~c"my-random-name", ~c"localhost", :inet)
     end
   end
 
   describe "listen_port_please/2" do
     test "returns the port for a valid node name" do
-      assert {:ok, 12_345} = Nbpm.listen_port_please(~c"my-node-12345", ~c"127.0.0.1")
-      assert {:ok, 0} = Nbpm.listen_port_please(~c"rpc-random-name", ~c"127.0.0.1")
-      assert {:ok, 0} = Nbpm.listen_port_please(~c"rem-random-sname", ~c"127.0.0.1")
-    end
-
-    test "handles invalid node names" do
-      assert {:error,
-              "Invalid node name format: invalid-node-name. It must be `name-port`, `rem-anything`, or `rpc-anything`."} =
-               Nbpm.listen_port_please(~c"invalid-node-name", ~c"127.0.0.1")
-
-      assert {:error, "Invalid node name format: random-name. It must be `name-port`, `rem-anything`, or `rpc-anything`."} =
-               Nbpm.listen_port_please(~c"random-name", ~c"127.0.0.1")
+      Enum.each(nodes_ports(), &assert_node_to_listen_port/1)
     end
   end
+
+  # # helper function
+  # def find_hash_result(max, mod, expected) do
+  #   Enum.each(1..max, fn n ->
+  #     str = Integer.to_string(n)
+  #     if Nbpm.name_to_port(str <> "my-random-name") == {:ok, expected} do
+  #       IO.puts("Found a string: #{str <> "my-random-name"}")
+  #     end
+  #   end)
+  # end
 end
