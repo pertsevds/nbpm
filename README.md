@@ -17,7 +17,7 @@ To use Nbpm in your Elixir project, add it as a dependency in your `mix.exs` fil
 ```elixir
 def deps do
 [
-    {:nbpm, "~> 0.1.0"}
+    {:nbpm, "~> 0.2.0"}
 ]
 end
 ```
