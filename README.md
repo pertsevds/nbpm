@@ -1,4 +1,4 @@
-[![CI](https://github.com/pertsevds/nbpm/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/pertsevds/nbpm/actions/workflows/ci.yml)
+[![CI](https://github.com/pertsevds/nbpm/actions/workflows/ci.yml/badge.svg)](https://github.com/pertsevds/nbpm/actions/workflows/ci.yml)
 
 # Name-Based Port Mapper (Nbpm)
 
