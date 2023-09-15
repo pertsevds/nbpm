@@ -35,18 +35,6 @@ defmodule Nbpm do
   Nbpm responds to these names by offering port number 0, indicating that the
   OS should assign a random port.
 
-  ## Installation
-
-  To use Nbpm in your Elixir project, add it as a dependency in your `mix.exs` file:
-
-  ```elixir
-  def deps do
-    [
-      {:nbpm, "~> 0.2.0"}
-    ]
-  end
-  ```
-
   ## References
 
   * [How to Implement an Alternative Node Discovery for Erlang Distribution](https://www.erlang.org/doc/apps/erts/alt_disco)
