@@ -18,8 +18,12 @@ defmodule Nbpm do
   compatibility with `Mix.Release`.
 
   - **Hash-Based Port:** If none of the previous options match, the node name
-  is hashed using the :erlang.phash2/2 function, and the resulting hash is
+  is hashed using the `:erlang.phash2` function, and the resulting hash is
   used as the port number. The port range is from 1024 to 65535.
+  `:erlang.phash2` is a portable hash function that gives the same hash for
+  the same Erlang term regardless of machine architecture and ERTS version,
+  thia ensures consistent name-to-port mappings across different machine
+  architectures and ERTS versions.
 
   To determine to which port your node name translates, you can use the
   `name_to_port/1` function provided by this module.
