@@ -1,15 +1,14 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - "main"
+      - "v[0-9]+.*"
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - "main"
+      - "v[0-9]+.*"
 
 permissions:
   contents: read
@@ -25,6 +24,9 @@ jobs:
           - '1.15.5'
         otp_version:
           - '26.0.2'
+    env:
+      MIX_ENV: test
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - uses: actions/checkout@v4
     - name: Set up Elixir
@@ -40,6 +42,10 @@ jobs:
         restore-keys: ${{ runner.os }}-mix-
     - name: Install dependencies
       run: mix deps.get
+    - name: Run mix format
+      run: mix format --check-formatted
+    - name: Run coverage export
+      run: mix coveralls.github
     - name: Run tests
       run: mix test
 
@@ -53,6 +59,8 @@ jobs:
           - '1.11.4'
         otp_version:
           - '21.3.8.24'
+    env:
+      MIX_ENV: test
     steps:
     - uses: actions/checkout@v4
     - name: Set up Elixir
@@ -68,5 +76,7 @@ jobs:
         restore-keys: ${{ runner.os }}-mix-
     - name: Install dependencies
       run: mix deps.get
+    - name: Run mix format
+      run: mix format --check-formatted
     - name: Run tests
       run: mix test
