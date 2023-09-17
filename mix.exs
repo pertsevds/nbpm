@@ -7,7 +7,7 @@ defmodule Nbpm.MixProject do
 
     [
       app: :nbpm,
-      version: "0.2.0",
+      version: "0.2.1",
       elixir: "~> 1.11",
       description: description(),
       package: package(),
