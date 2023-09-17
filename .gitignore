@@ -29,4 +29,7 @@ nbpm-*.tar
 .tool-versions
 
 # VSCode settings
-.vscode/settings.json
+/.vscode/
+
+# Rel
+/rel/
