@@ -1,10 +1,14 @@
+# Nbpm
+
+> Name-Based Port Mapper
+
 [![CI](https://github.com/pertsevds/nbpm/actions/workflows/ci.yml/badge.svg)](https://github.com/pertsevds/nbpm/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/pertsevds/nbpm/badge.svg?branch=2-usage-docs)](https://coveralls.io/github/pertsevds/nbpm?branch=2-usage-docs)
+[![License](https://img.shields.io/hexpm/l/nbpm.svg)](https://hex.pm/packages/nbpm)
 [![Hex pm](https://img.shields.io/hexpm/v/nbpm.svg?style=flat)](https://hex.pm/packages/nbpm)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/nbpm)
 
-# Name-Based Port Mapper (Nbpm)
-
-Nbpm is a lightweight Elixir module that provides a simplified implementation of the Erlang Port Mapper Daemon (EPMD) protocol. It enables basic functionality for mapping Erlang node names to network ports. This module is designed as a convenient alternative to a full EPMD implementation, making it easier to facilitate communication between Erlang nodes.
+`Nbpm` is a lightweight Elixir module that provides a simplified implementation of the Erlang Port Mapper Daemon (EPMD) protocol. It enables basic functionality for mapping Erlang node names to network ports. This module is designed as a convenient alternative to a full EPMD implementation, making it easier to facilitate communication between Erlang nodes.
 
 ## Features
 
@@ -24,10 +28,14 @@ def deps do
 end
 ```
 
-## Usage
+Execute `mix nbpm.install`
 
-TODO
+This will add `-start_epmd false -epmd_module Elixir.Nbpm` to `ELIXIR_ERL_OPTIONS` in files `rel/env.sh.eex` and `rel/env.bat.eex`
+
+## TODO
+
+Installation to global: https://github.com/pertsevds/nbpm/issues/4
 
 ## Documentation
-https://hexdocs.pm/nbpm
 
+https://hexdocs.pm/nbpm

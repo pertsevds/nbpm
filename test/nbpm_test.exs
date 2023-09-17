@@ -42,8 +42,7 @@ defmodule NbpmTest do
 
   describe "name_to_port/1" do
     test "converts valid node names to ports" do
-      nodes_ports()
-      |> Enum.each(&assert_name_to_port/1)
+      Enum.each(nodes_ports(), &assert_name_to_port/1)
 
       nodes_ports()
       |> Enum.map(fn {string, port} -> {to_charlist(string), port} end)
