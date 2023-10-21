@@ -5,6 +5,7 @@ on:
     branches:
       - "main"
       - "v[0-9]+.*"
+      - "task_port_number"
   pull_request:
     branches:
       - "main"
