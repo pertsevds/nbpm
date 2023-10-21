@@ -1,7 +1,7 @@
-defmodule Mix.Tasks.Nbpm.Install do
-  @shortdoc "Installs `Nbpm` into `Mix.Release` scripts"
+defmodule Mix.Tasks.Nbpm.Get_port_number do
+  @shortdoc "Get port number for current mix project"
 
-  @moduledoc "Installs `Nbpm` into `Mix.Release` scripts"
+  @moduledoc "Get port number for current mix project"
   use Mix.Task
 
   defp init_script(script) do
@@ -63,7 +63,7 @@ defmodule Mix.Tasks.Nbpm.Install do
 
       {:error, :enoent} ->
         :ok = init_script(script)
-        modify_windows_script()
+        modify_linux_script()
     end
   end
 
