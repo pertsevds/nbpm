@@ -1,75 +1,75 @@
-defmodule Mix.Tasks.Nbpm.Get_port_number do
+defmodule Mix.Tasks.Nbpm.GetPortNumber do
   @shortdoc "Get port number for current mix project"
 
   @moduledoc "Get port number for current mix project"
   use Mix.Task
 
-  defp init_script(script) do
-    IO.puts("#{script} was not found.")
-    run_init = IO.gets("Run `mix release.init`? [Y/n]")
+  # defp init_script(script) do
+  #   IO.puts("#{script} was not found.")
+  #   run_init = IO.gets("Run `mix release.init`? [Y/n]")
 
-    if run_init not in ["Y\n", "y\n"] do
-      IO.puts("""
-      Script was not found and you don't want to create it.
-      Exiting.
-      """)
+  #   if run_init not in ["Y\n", "y\n"] do
+  #     IO.puts("""
+  #     Script was not found and you don't want to create it.
+  #     Exiting.
+  #     """)
 
-      System.halt(0)
-    end
+  #     System.halt(0)
+  #   end
 
-    Mix.Task.run("release.init")
-  end
+  #   Mix.Task.run("release.init")
+  # end
 
-  defp modify_script(script, contents, string, pattern) do
-    exist = String.contains?(contents, string)
+  # defp modify_script(script, contents, string, pattern) do
+  #   exist = String.contains?(contents, string)
 
-    if not exist do
-      new_contents = Regex.replace(pattern, contents, "\\1\n" <> string <> "\n\n", global: false)
-      :ok = File.write(script, new_contents)
-    end
+  #   if not exist do
+  #     new_contents = Regex.replace(pattern, contents, "\\1\n" <> string <> "\n\n", global: false)
+  #     :ok = File.write(script, new_contents)
+  #   end
 
-    :ok
-  end
+  #   :ok
+  # end
 
-  defp modify_linux_script do
-    script = "rel/env.sh.eex"
+  # defp modify_linux_script do
+  #   script = "rel/env.sh.eex"
 
-    string =
-      "export ELIXIR_ERL_OPTIONS=\"-start_epmd false -epmd_module Elixir.Nbpm $ELIXIR_ERL_OPTIONS\""
+  #   string =
+  #     "export ELIXIR_ERL_OPTIONS=\"-start_epmd false -epmd_module Elixir.Nbpm $ELIXIR_ERL_OPTIONS\""
 
-    pattern = ~r/(#!\/bin\/sh\n\n)/
+  #   pattern = ~r/(#!\/bin\/sh\n\n)/
 
-    case File.read(script) do
-      {:ok, contents} ->
-        modify_script(script, contents, string, pattern)
+  #   case File.read(script) do
+  #     {:ok, contents} ->
+  #       modify_script(script, contents, string, pattern)
 
-      {:error, :enoent} ->
-        :ok = init_script(script)
-        modify_linux_script()
-    end
-  end
+  #     {:error, :enoent} ->
+  #       :ok = init_script(script)
+  #       modify_linux_script()
+  #   end
+  # end
 
-  defp modify_windows_script do
-    script = "rel/env.bat.eex"
+  # defp modify_windows_script do
+  #   script = "rel/env.bat.eex"
 
-    string =
-      "set ELIXIR_ERL_OPTIONS=-start_epmd false -epmd_module Elixir.Nbpm %ELIXIR_ERL_OPTIONS%"
+  #   string =
+  #     "set ELIXIR_ERL_OPTIONS=-start_epmd false -epmd_module Elixir.Nbpm %ELIXIR_ERL_OPTIONS%"
 
-    pattern = ~r/(@echo off\n)/
+  #   pattern = ~r/(@echo off\n)/
 
-    case File.read(script) do
-      {:ok, contents} ->
-        modify_script(script, contents, string, pattern)
+  #   case File.read(script) do
+  #     {:ok, contents} ->
+  #       modify_script(script, contents, string, pattern)
 
-      {:error, :enoent} ->
-        :ok = init_script(script)
-        modify_linux_script()
-    end
-  end
+  #     {:error, :enoent} ->
+  #       :ok = init_script(script)
+  #       modify_linux_script()
+  #   end
+  # end
 
   @doc false
-  def run(_) do
-    :ok = modify_linux_script()
-    :ok = modify_windows_script()
+  def run(args) do
+    {:ok, port_number} = Nbpm.name_to_port(hd(args))
+    IO.puts(port_number)
   end
 end
