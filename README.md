@@ -8,7 +8,7 @@
 [![Hex pm](https://img.shields.io/hexpm/v/nbpm.svg?style=flat)](https://hex.pm/packages/nbpm)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/nbpm)
 
-With `Nbpm` you don't need EPMD daemon. No additional daemons, no additional configs. Easy and simple distribution.
+With `Nbpm` you don't need EPMD daemon. No additional daemons, no additional configs. Easy and simple distribution without EPMD.
 
 ## Features
 
