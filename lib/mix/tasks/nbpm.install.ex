@@ -23,12 +23,12 @@ defmodule Mix.Tasks.Nbpm.Install do
   defp modify_script(script, contents, string, pattern) do
     exist = String.contains?(contents, string)
 
-    unless exist do
+    if exist do
+      :ok
+    else
       new_contents = Regex.replace(pattern, contents, "\\1\n" <> string <> "\n\n", global: false)
-      :ok = File.write(script, new_contents)
+      File.write(script, new_contents)
     end
-
-    :ok
   end
 
   defp modify_unix_script do
