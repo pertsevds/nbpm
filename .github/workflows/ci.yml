@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  test_linux_elixir_v1_15:
+  test_linux_elixir_v1_16:
     name: Ubuntu 22.04, Erlang/OTP ${{ matrix.otp_version }} Elixir ${{ matrix.elixir_version }}
     runs-on: ubuntu-22.04
     strategy:
