@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         elixir_version:
-          - '1.16.1'
+          - '1.16.2'
         otp_version:
           - '26.2.3'
     env:
