@@ -67,7 +67,7 @@ defmodule Mix.Tasks.Nbpm.Install do
     end
   end
 
-  @doc false
+  @impl Mix.Task
   def run(_) do
     :ok = modify_linux_script()
     :ok = modify_windows_script()

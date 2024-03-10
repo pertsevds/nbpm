@@ -8,7 +8,8 @@ defmodule Nbpm.MixProject do
     [
       app: :nbpm,
       version: "0.2.1",
-      elixir: "~> 1.11",
+      elixir: "~> 1.12",
+      elixirc_paths: elixirc_paths(Mix.env()),
       description: description(),
       package: package(),
       test_coverage: [tool: ExCoveralls],
@@ -29,6 +30,9 @@ defmodule Nbpm.MixProject do
       # extra_applications: [:logger]
     ]
   end
+
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
 
   defp description do
     "Nbpm is a custom EPMD module that maps Erlang node names to network ports."

@@ -12,9 +12,9 @@ With `Nbpm` you don't need EPMD daemon. No additional daemons, no additional con
 
 ## Features
 
--   `Mix.Release` compatibility.
--   Ability to specify port number in the node name.
--   Hash-Based Port from node name.
+- `Mix.Release` compatibility.
+- Ability to specify port number in the node name.
+- Hash-Based Port from node name.
 
 ## Installation
 
@@ -29,11 +29,13 @@ end
 ```
 
 Run:
+
 ```shell
 mix nbpm.install
 ```
 
-This will add `-start_epmd false -epmd_module Elixir.Nbpm` to `ELIXIR_ERL_OPTIONS` in files `rel/env.sh.eex` and `rel/env.bat.eex`.
+This will add `-start_epmd false -epmd_module Elixir.Nbpm` to
+`ELIXIR_ERL_OPTIONS` in files `rel/env.sh.eex` and `rel/env.bat.eex`.
 
 ## TODO
 
