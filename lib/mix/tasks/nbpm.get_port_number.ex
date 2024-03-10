@@ -23,7 +23,7 @@ defmodule Mix.Tasks.Nbpm.GetPortNumber do
   end
 
   @impl Mix.Task
-  def run(args) do
+  def run(args) when is_list(args) do
     {:ok, port_number} = Nbpm.name_to_port(hd(args))
     IO.puts(port_number)
   end

@@ -31,7 +31,7 @@ defmodule Mix.Tasks.Nbpm.Install do
     :ok
   end
 
-  defp modify_linux_script do
+  defp modify_unix_script do
     script = "rel/env.sh.eex"
 
     string =
@@ -45,11 +45,11 @@ defmodule Mix.Tasks.Nbpm.Install do
 
       {:error, :enoent} ->
         :ok = init_script(script)
-        modify_linux_script()
+        modify_unix_script()
     end
   end
 
-  defp modify_windows_script do
+  defp modify_win32_script do
     script = "rel/env.bat.eex"
 
     string =
@@ -63,13 +63,13 @@ defmodule Mix.Tasks.Nbpm.Install do
 
       {:error, :enoent} ->
         :ok = init_script(script)
-        modify_windows_script()
+        modify_win32_script()
     end
   end
 
   @impl Mix.Task
   def run(_) do
-    :ok = modify_linux_script()
-    :ok = modify_windows_script()
+    :ok = modify_unix_script()
+    :ok = modify_win32_script()
   end
 end
