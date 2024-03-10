@@ -1,6 +1,8 @@
 # Nbpm
 
-> Name-Based Port Mapper
+Name-Based Port Mapper
+
+---
 
 [![CI](https://github.com/pertsevds/nbpm/actions/workflows/ci.yml/badge.svg)](https://github.com/pertsevds/nbpm/actions/workflows/ci.yml)
 [![Coverage Status](https://coveralls.io/repos/github/pertsevds/nbpm/badge.svg?branch=2-usage-docs)](https://coveralls.io/github/pertsevds/nbpm?branch=2-usage-docs)
@@ -8,7 +10,8 @@
 [![Hex pm](https://img.shields.io/hexpm/v/nbpm.svg?style=flat)](https://hex.pm/packages/nbpm)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/nbpm)
 
-With `Nbpm` you don't need EPMD daemon. No additional daemons, no additional configs. Easy and simple distribution without EPMD.
+With `Nbpm` you don't need EPMD daemon. No additional daemons,
+no additional configs. Easy and simple distribution without EPMD.
 
 ## Features
 
@@ -18,7 +21,8 @@ With `Nbpm` you don't need EPMD daemon. No additional daemons, no additional con
 
 ## Installation
 
-To use `Nbpm` in your Elixir project, add it as a dependency in your `mix.exs` file:
+To use `Nbpm` in your Elixir project, add it as a dependency
+in your `mix.exs` file:
 
 ```elixir
 def deps do
@@ -39,8 +43,8 @@ This will add `-start_epmd false -epmd_module Elixir.Nbpm` to
 
 ## TODO
 
-Installation to global: https://github.com/pertsevds/nbpm/issues/4
+Installation to global: <https://github.com/pertsevds/nbpm/issues/4>
 
 ## Documentation
 
-https://hexdocs.pm/nbpm
+<https://hexdocs.pm/nbpm>

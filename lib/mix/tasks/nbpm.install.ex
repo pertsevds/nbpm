@@ -1,7 +1,7 @@
 defmodule Mix.Tasks.Nbpm.Install do
-  @shortdoc "Installs `Nbpm` into `Mix.Release` scripts"
+  @shortdoc "Installs `Nbpm` into `Mix.Release` scripts."
 
-  @moduledoc "Installs `Nbpm` into `Mix.Release` scripts"
+  @moduledoc "Installs `Nbpm` into `Mix.Release` scripts."
   use Mix.Task
 
   defp init_script(script) do
