@@ -54,7 +54,7 @@ jobs:
         elixir_version:
           - '1.12.3'
         otp_version:
-          - '22.3.4.26'
+          - '24.3.4.14'
     env:
       MIX_ENV: test
     steps:
