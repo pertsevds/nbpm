@@ -10,8 +10,9 @@ Name-Based Port Mapper
 [![Hex pm](https://img.shields.io/hexpm/v/nbpm.svg?style=flat)](https://hex.pm/packages/nbpm)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/nbpm)
 
-With `Nbpm` you don't need EPMD daemon. No additional daemons,
-no additional configs. Easy and simple distribution without EPMD.
+With Nbpm you don't need EPMD daemon.  
+No additional daemons, no additional configs.  
+Easy and simple distribution without EPMD.
 
 ## Features
 
@@ -32,14 +33,27 @@ def deps do
 end
 ```
 
-Run:
+Run
+
+```shell
+mix deps.get
+```
+
+to download it.
+
+Then run
 
 ```shell
 mix nbpm.install
 ```
 
-This will add `-start_epmd false -epmd_module Elixir.Nbpm` to
-`ELIXIR_ERL_OPTIONS` in files `rel/env.sh.eex` and `rel/env.bat.eex`.
+to install Nbpm into your project.
+
+> `mix nbpm.install` will add `-start_epmd false -epmd_module Elixir.Nbpm` to
+> `ELIXIR_ERL_OPTIONS` in files `rel/env.sh.eex` and `rel/env.bat.eex`.
+>
+> This will disable loading of EPMD daemon
+> and will use Nbpm module to map node names to ports.
 
 ## Port number task helper
 
@@ -51,7 +65,7 @@ mix nbpm.get_port_number
 2937
 ```
 
-or supply your app name as an argument:
+or supply any app name as an argument:
 
 ```shell
 mix nbpm.get_port_number my_app
