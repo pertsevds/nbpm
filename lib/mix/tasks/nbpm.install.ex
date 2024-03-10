@@ -14,7 +14,7 @@ defmodule Mix.Tasks.Nbpm.Install do
       {:error,
        """
        Script was not found and you don't want to create it.
-       Exiting.
+       Exiting.\
        """}
     end
   end
@@ -72,23 +72,24 @@ defmodule Mix.Tasks.Nbpm.Install do
     end
   end
 
-  @impl Mix.Task
-  def run(["-y"]) do
-    with :ok <- modify_unix_script(true),
-         :ok <- modify_win32_script(true) do
+  defp modify_without_confirmation(confirm) do
+    with :ok <- modify_unix_script(confirm),
+         :ok <- modify_win32_script(confirm) do
       :ok
     else
-      {:error, error} -> IO.puts(:stderr, error)
+      {:error, error} ->
+        IO.puts(:stderr, error)
+        :error
     end
   end
 
   @impl Mix.Task
+  def run(["-y"]) do
+    modify_without_confirmation(true)
+  end
+
+  @impl Mix.Task
   def run(_) do
-    with :ok <- modify_unix_script(false),
-         :ok <- modify_win32_script(false) do
-      :ok
-    else
-      {:error, error} -> IO.puts(:stderr, error)
-    end
+    modify_without_confirmation(false)
   end
 end
