@@ -4,7 +4,7 @@ defmodule Mix.Tasks.Nbpm.Install do
   @moduledoc "Installs `Nbpm` into `Mix.Release` scripts."
   use Mix.Task
 
-  defp init_script(script) do
+  defp init_script(script, false) do
     IO.puts("#{script} was not found.")
     run_init = IO.gets("Run `mix release.init`? [Y/n]")
 
@@ -20,6 +20,10 @@ defmodule Mix.Tasks.Nbpm.Install do
     Mix.Task.run("release.init")
   end
 
+  defp init_script(_script, _confirm) do
+    Mix.Task.run("release.init")
+  end
+
   defp modify_script(script, contents, string, pattern) do
     exist = String.contains?(contents, string)
 
@@ -31,7 +35,7 @@ defmodule Mix.Tasks.Nbpm.Install do
     end
   end
 
-  defp modify_unix_script do
+  defp modify_unix_script(confirm) do
     script = "rel/env.sh.eex"
 
     string =
@@ -44,12 +48,12 @@ defmodule Mix.Tasks.Nbpm.Install do
         modify_script(script, contents, string, pattern)
 
       {:error, :enoent} ->
-        :ok = init_script(script)
-        modify_unix_script()
+        :ok = init_script(script, confirm)
+        modify_unix_script(confirm)
     end
   end
 
-  defp modify_win32_script do
+  defp modify_win32_script(confirm) do
     script = "rel/env.bat.eex"
 
     string =
@@ -62,14 +66,20 @@ defmodule Mix.Tasks.Nbpm.Install do
         modify_script(script, contents, string, pattern)
 
       {:error, :enoent} ->
-        :ok = init_script(script)
-        modify_win32_script()
+        :ok = init_script(script, confirm)
+        modify_win32_script(confirm)
     end
   end
 
   @impl Mix.Task
+  def run(["-y"]) do
+    :ok = modify_unix_script(true)
+    :ok = modify_win32_script(true)
+  end
+
+  @impl Mix.Task
   def run(_) do
-    :ok = modify_unix_script()
-    :ok = modify_win32_script()
+    :ok = modify_unix_script(false)
+    :ok = modify_win32_script(false)
   end
 end
