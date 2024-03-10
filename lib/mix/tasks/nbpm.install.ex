@@ -9,7 +9,7 @@ defmodule Mix.Tasks.Nbpm.Install do
     IO.puts("#{script} was not found.")
     run_init = IO.gets("Run `mix release.init`? [Y/n]")
 
-    if run_init not in ["Y\n", "y\n"] do
+    unless run_init in ["Y\n", "y\n"] do
       IO.puts("""
       Script was not found and you don't want to create it.
       Exiting.
@@ -24,7 +24,7 @@ defmodule Mix.Tasks.Nbpm.Install do
   defp modify_script(script, contents, string, pattern) do
     exist = String.contains?(contents, string)
 
-    if not exist do
+    unless exist do
       new_contents = Regex.replace(pattern, contents, "\\1\n" <> string <> "\n\n", global: false)
       :ok = File.write(script, new_contents)
     end

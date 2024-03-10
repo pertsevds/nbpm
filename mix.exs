@@ -46,7 +46,7 @@ defmodule Nbpm.MixProject do
     [
       {:excoveralls, "~> 0.10", only: :test, runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:styler, "~> 0.9", only: [:dev, :test], runtime: false},
+      {:styler, "~> 0.11", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.30", only: :dev, runtime: false}
     ]
   end

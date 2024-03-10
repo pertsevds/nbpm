@@ -13,7 +13,7 @@ defmodule Nbpm do
   5 digits from the node name are considered as the port number. For example,
   for a node name "my_node12345" the port number would be 12345.
 
-  - **Special Prefixes:** If a node name starts with "rem-" or "rpc-," it
+  - **Special Prefixes:** If a node name starts with "rem-" or "rpc-", it
   indicates that the OS should assign a random port. This is for
   compatibility with `Mix.Release`.
 
