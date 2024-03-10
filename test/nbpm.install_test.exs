@@ -28,5 +28,12 @@ defmodule Mix.Tasks.Nbpm.InstallTest do
       Mix.Task.run("release.init")
       Install.run(["-y"])
     end
+
+    test "install to projects with existing './rel' dir without manual confirmation, but make it 2 times" do
+      {:ok, _} = delete_rel_dir()
+      Mix.Task.run("release.init")
+      Install.run(["-y"])
+      Install.run(["-y"])
+    end
   end
 end
