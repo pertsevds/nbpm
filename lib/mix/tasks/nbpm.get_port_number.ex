@@ -6,11 +6,11 @@ defmodule Mix.Tasks.Nbpm.GetPortNumber do
 
   Without arguments
   `mix nbpm.get_port_number`
-  prints current project port.
+  prints current project application port.
 
   With one argument
   `mix nbpm.get_port_number my_app`
-  prints port number for that string.
+  prints port number for that argument.
 
   """
   use Mix.Task

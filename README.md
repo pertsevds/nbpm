@@ -41,6 +41,23 @@ mix nbpm.install
 This will add `-start_epmd false -epmd_module Elixir.Nbpm` to
 `ELIXIR_ERL_OPTIONS` in files `rel/env.sh.eex` and `rel/env.bat.eex`.
 
+## Port number task helper
+
+You can determine port number for your current app
+by using `nbpm.get_port_number` task:
+
+```shell
+mix nbpm.get_port_number
+2937
+```
+
+or supply your app name as an argument:
+
+```shell
+mix nbpm.get_port_number my_app
+6520
+```
+
 ## TODO
 
 Installation to global: <https://github.com/pertsevds/nbpm/issues/4>
