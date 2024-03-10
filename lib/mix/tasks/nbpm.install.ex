@@ -8,16 +8,15 @@ defmodule Mix.Tasks.Nbpm.Install do
     IO.puts("#{script} was not found.")
     run_init = IO.gets("Run `mix release.init`? [Y/n]")
 
-    unless run_init in ["Y\n", "y\n"] do
-      IO.puts("""
-      Script was not found and you don't want to create it.
-      Exiting.
-      """)
-
-      System.halt(0)
+    if run_init in ["Y\n", "y\n"] do
+      Mix.Task.run("release.init")
+    else
+      {:error,
+       """
+       Script was not found and you don't want to create it.
+       Exiting.
+       """}
     end
-
-    Mix.Task.run("release.init")
   end
 
   defp init_script(_script, _confirm) do
@@ -48,8 +47,9 @@ defmodule Mix.Tasks.Nbpm.Install do
         modify_script(script, contents, string, pattern)
 
       {:error, :enoent} ->
-        :ok = init_script(script, confirm)
-        modify_unix_script(confirm)
+        with :ok <- init_script(script, confirm) do
+          modify_unix_script(confirm)
+        end
     end
   end
 
@@ -66,20 +66,29 @@ defmodule Mix.Tasks.Nbpm.Install do
         modify_script(script, contents, string, pattern)
 
       {:error, :enoent} ->
-        :ok = init_script(script, confirm)
-        modify_win32_script(confirm)
+        with :ok <- init_script(script, confirm) do
+          modify_win32_script(confirm)
+        end
     end
   end
 
   @impl Mix.Task
   def run(["-y"]) do
-    :ok = modify_unix_script(true)
-    :ok = modify_win32_script(true)
+    with :ok <- modify_unix_script(true),
+         :ok <- modify_win32_script(true) do
+      :ok
+    else
+      {:error, error} -> IO.puts(:stderr, error)
+    end
   end
 
   @impl Mix.Task
   def run(_) do
-    :ok = modify_unix_script(false)
-    :ok = modify_win32_script(false)
+    with :ok <- modify_unix_script(false),
+         :ok <- modify_win32_script(false) do
+      :ok
+    else
+      {:error, error} -> IO.puts(:stderr, error)
+    end
   end
 end
