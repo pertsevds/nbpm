@@ -33,11 +33,12 @@ defmodule Nbpm do
   Nbpm is compatible with Mix releases.
 
   When you execute `"_build/prod/rel/your_app/bin/your_app remote"`,
-  it automatically generates node names in the format "rem-$(rand)-name"
-  or "rem-$(rand)-sname".
+  `Mix.Release` script automatically generates node names
+  in the format "rem-$(rand)-name" or "rem-$(rand)-sname".
 
   Similarly, when you execute `"_build/prod/rel/your_app/bin/your_app rpc"`,
-  it generates "rpc-$(rand)-name" or "rpc-$(rand)-sname".
+  `Mix.Release` script generates node names
+  as "rpc-$(rand)-name" or "rpc-$(rand)-sname".
 
   Nbpm responds to these names by offering port number 0, indicating that the
   OS should assign a random port.
