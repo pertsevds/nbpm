@@ -57,7 +57,7 @@ to install Nbpm into your project.
 
 ## Port number task helper
 
-You can determine port number for your current app
+You can determine port number for your current app name
 by using `nbpm.get_port_number` task:
 
 ```shell
@@ -65,12 +65,17 @@ mix nbpm.get_port_number
 2937
 ```
 
-or supply any app name as an argument:
+`mix nbpm.get_port_number` will output port number for your current app.
+
+Or you can supply any node name as an argument:
 
 ```shell
 mix nbpm.get_port_number my_app
 6520
 ```
+
+`mix nbpm.get_port_number my_app` will output port number
+for `my_app` node name.
 
 ## TODO
 
