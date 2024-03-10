@@ -8,7 +8,7 @@
 [![Hex pm](https://img.shields.io/hexpm/v/nbpm.svg?style=flat)](https://hex.pm/packages/nbpm)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/nbpm)
 
-`Nbpm` is a lightweight Elixir module that provides a simplified implementation of the Erlang Port Mapper Daemon (EPMD) protocol. It enables basic functionality for mapping Erlang node names to network ports. This module is designed as a convenient alternative to a full EPMD implementation, making it easier to facilitate communication between Erlang nodes.
+With `Nbpm` you don't need EPMD daemon. No additional daemons, no additional configs. Easy and simple distribution without EPMD.
 
 ## Features
 
