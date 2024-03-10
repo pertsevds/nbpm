@@ -26,16 +26,19 @@ defmodule Nbpm do
   architectures and ERTS versions.
 
   To determine to which port your node name translates, you can use the
-  `name_to_port/1` function provided by this module.
+  `mix nbpm.get_port_number` (`Mix.Tasks.Nbpm.GetPortNumber`) task helper.
 
   ## Compatibility
 
-  Nbpm is compatible with Mix releases. When you execute
-  `"_build/prod/rel/your_app/bin/your_app remote"`, it automatically
-  generates node names in the format "rem-$(rand)-name" or
-  "rem-$(rand)-sname". Similarly, when you execute
-  `"_build/prod/rel/your_app/bin/your_app rpc"`, it generates
-  "rpc-$(rand)-name" or "rpc-$(rand)-sname".
+  Nbpm is compatible with Mix releases.
+
+  When you execute `"_build/prod/rel/your_app/bin/your_app remote"`,
+  it automatically generates node names in the format "rem-$(rand)-name"
+  or "rem-$(rand)-sname".
+
+  Similarly, when you execute `"_build/prod/rel/your_app/bin/your_app rpc"`,
+  it generates "rpc-$(rand)-name" or "rpc-$(rand)-sname".
+
   Nbpm responds to these names by offering port number 0, indicating that the
   OS should assign a random port.
 
