@@ -29,7 +29,7 @@ defmodule Mix.Tasks.Nbpm.Install do
     if exist do
       :ok
     else
-      new_contents = Regex.replace(pattern, contents, "\\1\n" <> string <> "\n\n", global: false)
+      new_contents = Regex.replace(pattern, contents, "\\1\n" <> string, global: false)
       File.write(script, new_contents)
     end
   end
@@ -38,9 +38,9 @@ defmodule Mix.Tasks.Nbpm.Install do
     script = "rel/env.sh.eex"
 
     string =
-      "export ELIXIR_ERL_OPTIONS=\"-start_epmd false -epmd_module Elixir.Nbpm $ELIXIR_ERL_OPTIONS\""
+      "export ELIXIR_ERL_OPTIONS=\"-start_epmd false -epmd_module Elixir.Nbpm $ELIXIR_ERL_OPTIONS\"\n"
 
-    pattern = ~r/(#!\/bin\/sh\n\n)/
+    pattern = ~r/(#!\/bin\/sh\n)/
 
     case File.read(script) do
       {:ok, contents} ->
@@ -57,7 +57,7 @@ defmodule Mix.Tasks.Nbpm.Install do
     script = "rel/env.bat.eex"
 
     string =
-      "set ELIXIR_ERL_OPTIONS=-start_epmd false -epmd_module Elixir.Nbpm %ELIXIR_ERL_OPTIONS%"
+      "set ELIXIR_ERL_OPTIONS=-start_epmd false -epmd_module Elixir.Nbpm %ELIXIR_ERL_OPTIONS%\n\n"
 
     pattern = ~r/(@echo off\n)/
 
