@@ -45,16 +45,16 @@ jobs:
     - name: Run tests
       run: mix test
 
-  test_linux_elixir_v1_11:
-    name: Ubuntu 20.04, Erlang/OTP ${{ matrix.otp_version }} Elixir ${{ matrix.elixir_version }}
-    runs-on: ubuntu-20.04
+  test_linux_elixir_v1_12:
+    name: Ubuntu 22.04, Erlang/OTP ${{ matrix.otp_version }} Elixir ${{ matrix.elixir_version }}
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
         elixir_version:
-          - '1.11.4'
+          - '1.12.0'
         otp_version:
-          - '21.3.8.24'
+          - '22.3.4.26'
     env:
       MIX_ENV: test
     steps:
