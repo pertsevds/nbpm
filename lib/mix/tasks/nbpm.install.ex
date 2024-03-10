@@ -1,15 +1,14 @@
 defmodule Mix.Tasks.Nbpm.Install do
-  @shortdoc "Insatlls `Nbpm` into `Mix.Release` scripts"
+  @shortdoc "Installs `Nbpm` into `Mix.Release` scripts"
 
-  @moduledoc "Insatlls `Nbpm` into `Mix.Release` scripts."
-
+  @moduledoc "Installs `Nbpm` into `Mix.Release` scripts"
   use Mix.Task
 
   defp init_script(script) do
     IO.puts("#{script} was not found.")
     run_init = IO.gets("Run `mix release.init`? [Y/n]")
 
-    if run_init not in ["Y\n", "y\n"] do
+    unless run_init in ["Y\n", "y\n"] do
       IO.puts("""
       Script was not found and you don't want to create it.
       Exiting.
@@ -24,7 +23,7 @@ defmodule Mix.Tasks.Nbpm.Install do
   defp modify_script(script, contents, string, pattern) do
     exist = String.contains?(contents, string)
 
-    if not exist do
+    unless exist do
       new_contents = Regex.replace(pattern, contents, "\\1\n" <> string <> "\n\n", global: false)
       :ok = File.write(script, new_contents)
     end
@@ -46,8 +45,7 @@ defmodule Mix.Tasks.Nbpm.Install do
 
       {:error, :enoent} ->
         :ok = init_script(script)
-        {:ok, contents} = File.read(script)
-        modify_script(script, contents, string, pattern)
+        modify_linux_script()
     end
   end
 
@@ -65,8 +63,7 @@ defmodule Mix.Tasks.Nbpm.Install do
 
       {:error, :enoent} ->
         :ok = init_script(script)
-        {:ok, contents} = File.read(script)
-        modify_script(script, contents, string, pattern)
+        modify_windows_script()
     end
   end
 

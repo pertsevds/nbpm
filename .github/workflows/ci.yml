@@ -5,6 +5,7 @@ on:
     branches:
       - "main"
       - "v[0-9]+.*"
+      - "task_port_number"
   pull_request:
     branches:
       - "main"
@@ -21,9 +22,9 @@ jobs:
       fail-fast: false
       matrix:
         elixir_version:
-          - '1.15.5'
+          - '1.15.7'
         otp_version:
-          - '26.0.2'
+          - '26.1.2'
     env:
       MIX_ENV: test
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -58,7 +59,7 @@ jobs:
         elixir_version:
           - '1.11.4'
         otp_version:
-          - '21.3.8.24'
+          - '24.3.4.14'
     env:
       MIX_ENV: test
     steps:
