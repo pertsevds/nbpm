@@ -62,7 +62,6 @@ by using `nbpm.get_port_number` task:
 
 ```shell
 mix nbpm.get_port_number
-2937
 ```
 
 `mix nbpm.get_port_number` will output port number for your current app.
@@ -71,7 +70,6 @@ Or you can supply any node name as an argument:
 
 ```shell
 mix nbpm.get_port_number my_app
-6520
 ```
 
 `mix nbpm.get_port_number my_app` will output port number
