@@ -67,14 +67,4 @@ defmodule NbpmTest do
       Enum.each(nodes_ports(), &assert_node_to_listen_port/1)
     end
   end
-
-  # # helper function
-  # def find_hash_result(max, mod, expected) do
-  #   Enum.each(1..max, fn n ->
-  #     str = Integer.to_string(n)
-  #     if Nbpm.name_to_port(str <> "my-random-name") == {:ok, expected} do
-  #       IO.puts("Found a string: #{str <> "my-random-name"}")
-  #     end
-  #   end)
-  # end
 end
