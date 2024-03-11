@@ -57,17 +57,11 @@ defmodule Mix.Tasks.Nbpm.Install1Test do
     assert scripts_changed() == true
   end
 
-  # test "install to projects without './rel' dir with manual confirmation, but say \"n\"" do
-  #   {:ok, _} = delete_rel_dir()
-  #   assert capture_io("n\n", fn -> Install.run([]) end) == "rel/env.sh.eex was not found.\nRun `mix release.init`? [Y/n]"
-  #   # assert scripts_changed() == false
-  # end
-
-  # test "install to projects with existing './rel' dir without manual confirmation" do
-  #   {:ok, _} = delete_rel_dir()
-  #   Mix.Task.run("release.init")
-  #   Install.run(["-y"])
-  # end
+  test "install to projects without './rel' dir with manual confirmation, but say \"n\"" do
+    {:ok, _} = delete_rel_dir()
+    assert capture_io("n\n", fn -> Install.run([]) end) == "rel/env.sh.eex was not found.\nRun `mix release.init`? [Y/n]"
+    assert scripts_changed() == false
+  end
 
   test "install to projects with existing './rel' dir without manual confirmation, but make it 2 times" do
     {:ok, _} = delete_rel_dir()
