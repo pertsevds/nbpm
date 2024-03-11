@@ -70,5 +70,3 @@ defmodule Mix.Tasks.Nbpm.Install1Test do
     assert capture_io(fn -> Install.run(["-y"]) end) == ""
   end
 end
-
-# 1

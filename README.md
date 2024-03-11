@@ -5,7 +5,7 @@ Name-Based Port Mapper
 ---
 
 [![CI](https://github.com/pertsevds/nbpm/actions/workflows/ci.yml/badge.svg)](https://github.com/pertsevds/nbpm/actions/workflows/ci.yml)
-[![Coverage Status](https://coveralls.io/repos/github/pertsevds/nbpm/badge.svg?branch=2-usage-docs)](https://coveralls.io/github/pertsevds/nbpm?branch=2-usage-docs)
+[![Coverage Status](https://coveralls.io/repos/github/pertsevds/nbpm/badge.svg?branch=main)](https://coveralls.io/github/pertsevds/nbpm?branch=main)
 [![License](https://img.shields.io/hexpm/l/nbpm.svg)](https://hex.pm/packages/nbpm)
 [![Hex pm](https://img.shields.io/hexpm/v/nbpm.svg?style=flat)](https://hex.pm/packages/nbpm)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/nbpm)
