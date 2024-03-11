@@ -69,10 +69,10 @@ defmodule Mix.Tasks.Nbpm.Install1Test do
   #   Install.run(["-y"])
   # end
 
-  # test "install to projects with existing './rel' dir without manual confirmation, but make it 2 times" do
-  #   {:ok, _} = delete_rel_dir()
-  #   Mix.Task.run("release.init")
-  #   Install.run(["-y"])
-  #   Install.run(["-y"])
-  # end
+  test "install to projects with existing './rel' dir without manual confirmation, but make it 2 times" do
+    {:ok, _} = delete_rel_dir()
+    Mix.Task.reenable("release.init")
+    assert capture_io(fn -> Install.run(["-y"]) end) =~ "creating \e[0mrel/env.sh.eex"
+    assert capture_io(fn -> Install.run(["-y"]) end) == ""
+  end
 end
