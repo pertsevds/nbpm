@@ -75,10 +75,12 @@ defmodule Mix.Tasks.Nbpm.Install do
   defp modify_without_confirmation(confirm) do
     with :ok <- modify_unix_script(confirm),
          :ok <- modify_win32_script(confirm) do
+      # dbg("aaa")
       :ok
     else
-      {:error, error} ->
-        IO.puts(:stderr, error)
+      x ->
+        IO.puts(x)
+        # dbg(x)
         :error
     end
   end
