@@ -19,6 +19,7 @@ Easy and simple distribution without EPMD.
 - `Mix.Release` compatibility.
 - Ability to specify port number in the node name.
 - Hash-Based Port from node name.
+- [Mix task to get port number from node name](#mix-task-to-get-port-number-from-node-name).
 
 ## Installation
 
@@ -56,9 +57,9 @@ to install Nbpm into your project.
 > This will disable loading of EPMD daemon
 > and will use Nbpm module to map node names to ports.
 
-## Port number task helper
+## Mix task to get port number from node name
 
-You can determine port number for your current app name
+You can get port number for your current app name
 by using `nbpm.get_port_number` task:
 
 ```shell
@@ -76,7 +77,7 @@ mix nbpm.get_port_number my_app
 `mix nbpm.get_port_number my_app` will output port number
 for `my_app` node name.
 
-## TODO
+## Todo
 
 Installation to global: <https://github.com/pertsevds/nbpm/issues/4>
 
