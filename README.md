@@ -29,7 +29,7 @@ in your `mix.exs` file:
 ```elixir
 def deps do
 [
-    {:nbpm, "~> 0.2.0"}
+    {:nbpm, "~> 0.3.0"}
 ]
 end
 ```
