@@ -1,5 +1,1 @@
-{
-  "skip_files": [
-    "lib/mix/tasks/nbpm.install.ex"
-  ]
-}
+{}

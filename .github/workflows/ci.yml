@@ -10,16 +10,15 @@ permissions:
   contents: read
 
 jobs:
-  test_linux_elixir_v1_16:
-    name: Ubuntu 22.04, Erlang/OTP ${{ matrix.otp_version }} Elixir ${{ matrix.elixir_version }}
-    runs-on: ubuntu-22.04
+  test_linux_elixir_latest:
+    name: ${{ matrix.os }}, Erlang/OTP ${{ matrix.otp_version }} Elixir ${{ matrix.elixir_version }}
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        elixir_version:
-          - '1.16.2'
-        otp_version:
-          - '26.2.3'
+        os: [ubuntu-latest]
+        elixir_version: ['1']
+        otp_version: ['26']
     env:
       MIX_ENV: test
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -45,16 +44,16 @@ jobs:
     - name: Run tests
       run: mix test
 
-  test_linux_elixir_v1_12:
+  test_linux_elixir_least_supported:
     name: Ubuntu 20.04, Erlang/OTP ${{ matrix.otp_version }} Elixir ${{ matrix.elixir_version }}
     runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
       matrix:
         elixir_version:
-          - '1.12.3'
+          - '1.12'
         otp_version:
-          - '24.3.4.14'
+          - '24'
     env:
       MIX_ENV: test
     steps:

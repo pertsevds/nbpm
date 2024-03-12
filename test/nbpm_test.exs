@@ -1,5 +1,7 @@
 defmodule NbpmTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
+
+  import NbpmTest.Support
 
   doctest Nbpm
 
@@ -13,31 +15,6 @@ defmodule NbpmTest do
 
   def assert_node_to_listen_port({input, expected}) do
     assert {:ok, ^expected} = Nbpm.listen_port_please(input, ~c"127.0.0.1")
-  end
-
-  def nodes_ports do
-    [
-      {"88197my-random-name", 1_024},
-      {"18736my-random-name", 65_535},
-      {"my-random-name", 41_600},
-      {"my-random-name-12345", 12_345},
-      {"my-random-name12345", 12_345},
-      {"12345", 12_345},
-      {"rpc-random-name", 0},
-      {"rpc-random-name-12345", 0},
-      {"rpc-my-random-name12345", 0},
-      {"rpc-rem-my-random-name-12345", 0},
-      {"rpc-rem-my-random-name12345", 0},
-      {"rpc-12345", 0},
-      {"rpc12345", 12_345},
-      {"rem-random-sname", 0},
-      {"rem-random-sname-12345", 0},
-      {"rem-random-sname12345", 0},
-      {"rem-rpc-my-random-name-12345", 0},
-      {"rem-rpc-my-random-name12345", 0},
-      {"rem-12345", 0},
-      {"rem12345", 12_345}
-    ]
   end
 
   describe "name_to_port/1" do
@@ -90,14 +67,4 @@ defmodule NbpmTest do
       Enum.each(nodes_ports(), &assert_node_to_listen_port/1)
     end
   end
-
-  # # helper function
-  # def find_hash_result(max, mod, expected) do
-  #   Enum.each(1..max, fn n ->
-  #     str = Integer.to_string(n)
-  #     if Nbpm.name_to_port(str <> "my-random-name") == {:ok, expected} do
-  #       IO.puts("Found a string: #{str <> "my-random-name"}")
-  #     end
-  #   end)
-  # end
 end
