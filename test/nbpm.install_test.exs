@@ -3,8 +3,6 @@ defmodule Mix.Tasks.Nbpm.Install1Test do
 
   import ExUnit.CaptureIO
 
-  alias Mix.Tasks.Nbpm.Install
-
   def delete_rel_dir do
     File.rm_rf("./rel")
   end
@@ -45,28 +43,28 @@ defmodule Mix.Tasks.Nbpm.Install1Test do
 
   test "install to projects without './rel' dir without manual confirmation" do
     {:ok, _} = delete_rel_dir()
-    Mix.Task.reenable("release.init")
-    assert capture_io(fn -> Install.run(["-y"]) end) =~ "creating"
+    assert capture_io(fn -> Mix.Task.rerun("nbpm.install", ["-y"]) end) =~ "creating"
     assert scripts_changed() == true
   end
 
   test "install to projects without './rel' dir with manual confirmation, say \"y\"" do
     {:ok, _} = delete_rel_dir()
-    Mix.Task.reenable("release.init")
-    assert capture_io("y\n", fn -> Install.run([]) end) =~ "creating"
+    assert capture_io("y\n", fn -> Mix.Task.rerun("nbpm.install", []) end) =~ "creating"
     assert scripts_changed() == true
   end
 
   test "install to projects without './rel' dir with manual confirmation, but say \"n\"" do
     {:ok, _} = delete_rel_dir()
-    assert capture_io("n\n", fn -> Install.run([]) end) =~ "rel/env.sh.eex was not found."
+
+    assert capture_io("n\n", fn -> Mix.Task.rerun("nbpm.install", []) end) =~
+             "rel/env.sh.eex was not found."
+
     assert scripts_changed() == false
   end
 
   test "install to projects with existing './rel' dir without manual confirmation, but make it 2 times" do
     {:ok, _} = delete_rel_dir()
-    Mix.Task.reenable("release.init")
-    assert capture_io(fn -> Install.run(["-y"]) end) =~ "creating"
-    assert capture_io(fn -> Install.run(["-y"]) end) == ""
+    assert capture_io(fn -> Mix.Task.rerun("nbpm.install", ["-y"]) end) =~ "creating"
+    assert capture_io(fn -> Mix.Task.rerun("nbpm.install", ["-y"]) end) == ""
   end
 end

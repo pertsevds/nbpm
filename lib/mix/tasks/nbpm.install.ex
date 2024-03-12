@@ -9,9 +9,9 @@ defmodule Mix.Tasks.Nbpm.Install do
     run_init = IO.gets("Run `mix release.init`? [Y/n]")
 
     if run_init in ["Y\n", "y\n"] do
-      Mix.Task.run("release.init")
+      Mix.Task.rerun("release.init")
     else
-      {:error,
+      {:stop,
        """
        Script was not found and you don't want to create it.
        Exiting.\
@@ -20,7 +20,7 @@ defmodule Mix.Tasks.Nbpm.Install do
   end
 
   defp init_script(_script, _confirm) do
-    Mix.Task.run("release.init")
+    Mix.Task.rerun("release.init")
   end
 
   defp modify_script(script, contents, string, pattern) do
@@ -77,6 +77,10 @@ defmodule Mix.Tasks.Nbpm.Install do
          :ok <- modify_win32_script(confirm) do
       :ok
     else
+      {:stop, str} ->
+        IO.puts(str)
+        :ok
+
       _ ->
         IO.puts(:stderr, "Error when script modified")
         :error
