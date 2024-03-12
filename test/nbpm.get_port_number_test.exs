@@ -4,10 +4,8 @@ defmodule Mix.Tasks.Nbpm.GetPortNumberTest do
   import ExUnit.CaptureIO
   import NbpmTest.Support
 
-  alias Mix.Tasks.Nbpm.GetPortNumber
-
-  def assert_node_to_listen_port({input, expected}) do
-    assert "#{expected}\n" == capture_io(fn -> GetPortNumber.run([input]) end)
+  defp assert_node_to_listen_port({input, expected}) do
+    assert "#{expected}\n" == capture_io(fn -> Mix.Task.rerun("nbpm.get_port_number", [input]) end)
   end
 
   describe "test get port number" do
@@ -16,7 +14,7 @@ defmodule Mix.Tasks.Nbpm.GetPortNumberTest do
     end
 
     test "get listen port by project app" do
-      assert "2937\n" == capture_io(fn -> GetPortNumber.run([]) end)
+      assert "2937\n" == capture_io(fn -> Mix.Task.rerun("nbpm.get_port_number", []) end)
     end
   end
 end

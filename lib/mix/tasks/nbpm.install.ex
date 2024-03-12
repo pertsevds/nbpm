@@ -9,7 +9,7 @@ defmodule Mix.Tasks.Nbpm.Install do
     run_init = IO.gets("Run `mix release.init`? [Y/n]")
 
     if run_init in ["Y\n", "y\n"] do
-      Mix.Task.run("release.init")
+      Mix.Task.rerun("release.init")
     else
       {:error,
        """
@@ -20,7 +20,7 @@ defmodule Mix.Tasks.Nbpm.Install do
   end
 
   defp init_script(_script, _confirm) do
-    Mix.Task.run("release.init")
+    Mix.Task.rerun("release.init")
   end
 
   defp modify_script(script, contents, string, pattern) do

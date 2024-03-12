@@ -45,14 +45,12 @@ defmodule Mix.Tasks.Nbpm.Install1Test do
 
   test "install to projects without './rel' dir without manual confirmation" do
     {:ok, _} = delete_rel_dir()
-    Mix.Task.reenable("release.init")
     assert capture_io(fn -> Install.run(["-y"]) end) =~ "creating"
     assert scripts_changed() == true
   end
 
   test "install to projects without './rel' dir with manual confirmation, say \"y\"" do
     {:ok, _} = delete_rel_dir()
-    Mix.Task.reenable("release.init")
     assert capture_io("y\n", fn -> Install.run([]) end) =~ "creating"
     assert scripts_changed() == true
   end
@@ -65,7 +63,6 @@ defmodule Mix.Tasks.Nbpm.Install1Test do
 
   test "install to projects with existing './rel' dir without manual confirmation, but make it 2 times" do
     {:ok, _} = delete_rel_dir()
-    Mix.Task.reenable("release.init")
     assert capture_io(fn -> Install.run(["-y"]) end) =~ "creating"
     assert capture_io(fn -> Install.run(["-y"]) end) == ""
   end
