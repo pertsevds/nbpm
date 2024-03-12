@@ -49,6 +49,7 @@ mix nbpm.install
 
 to install Nbpm into your project.
 
+> [!NOTE]
 > `mix nbpm.install` will add `-start_epmd false -epmd_module Elixir.Nbpm` to
 > `ELIXIR_ERL_OPTIONS` in files `rel/env.sh.eex` and `rel/env.bat.eex`.
 >
