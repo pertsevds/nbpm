@@ -36,7 +36,7 @@ end
 Run
 
 ```shell
-mix deps.get
+    $ mix deps.get
 ```
 
 to download it.
@@ -44,7 +44,7 @@ to download it.
 Then run
 
 ```shell
-mix nbpm.install
+    $ mix nbpm.install
 ```
 
 to install Nbpm into your project.
@@ -61,7 +61,7 @@ You can determine port number for your current app name
 by using `nbpm.get_port_number` task:
 
 ```shell
-mix nbpm.get_port_number
+    $ mix nbpm.get_port_number
 ```
 
 `mix nbpm.get_port_number` will output port number for your current app.
@@ -69,7 +69,7 @@ mix nbpm.get_port_number
 Or you can supply any node name as an argument:
 
 ```shell
-mix nbpm.get_port_number my_app
+    $ mix nbpm.get_port_number my_app
 ```
 
 `mix nbpm.get_port_number my_app` will output port number
