@@ -5,7 +5,8 @@ defmodule Mix.Tasks.Nbpm.GetPortNumberTest do
   import NbpmTest.Support
 
   defp assert_node_to_listen_port({input, expected}) do
-    assert "#{expected}\n" == capture_io(fn -> Mix.Task.rerun("nbpm.get_port_number", [input]) end)
+    assert "#{expected}\n" ==
+             capture_io(fn -> Mix.Task.rerun("nbpm.get_port_number", [input]) end)
   end
 
   describe "test get port number" do

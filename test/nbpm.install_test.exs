@@ -55,7 +55,10 @@ defmodule Mix.Tasks.Nbpm.Install1Test do
 
   test "install to projects without './rel' dir with manual confirmation, but say \"n\"" do
     {:ok, _} = delete_rel_dir()
-    assert capture_io("n\n", fn -> Mix.Task.rerun("nbpm.install", []) end) =~ "rel/env.sh.eex was not found."
+
+    assert capture_io("n\n", fn -> Mix.Task.rerun("nbpm.install", []) end) =~
+             "rel/env.sh.eex was not found."
+
     assert scripts_changed() == false
   end
 
