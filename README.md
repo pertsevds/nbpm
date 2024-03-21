@@ -9,6 +9,7 @@ Name-Based Port Mapper
 [![License](https://img.shields.io/hexpm/l/nbpm.svg)](https://hex.pm/packages/nbpm)
 [![Hex pm](https://img.shields.io/hexpm/v/nbpm.svg?style=flat)](https://hex.pm/packages/nbpm)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/nbpm)
+[![Hex.pm Downloads](https://img.shields.io/hexpm/dt/nbpm)](https://hex.pm/packages/nbpm)
 
 With Nbpm you don't need EPMD daemon.  
 No additional daemons, no additional configs.  
