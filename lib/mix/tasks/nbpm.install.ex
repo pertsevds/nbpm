@@ -34,47 +34,33 @@ defmodule Mix.Tasks.Nbpm.Install do
     end
   end
 
-  defp modify_unix_script(confirm) do
-    script = "rel/env.sh.eex"
-
-    string =
-      "export ELIXIR_ERL_OPTIONS=\"-start_epmd false -epmd_module Elixir.Nbpm $ELIXIR_ERL_OPTIONS\"\n"
-
-    pattern = ~r/(#!\/bin\/sh\n)/
-
-    case File.read(script) do
+  defp modify_os_script(confirm, filename, string, pattern) do
+    case File.read(filename) do
       {:ok, contents} ->
-        modify_script(script, contents, string, pattern)
+        modify_script(filename, contents, string, pattern)
 
       {:error, :enoent} ->
-        with :ok <- init_script(script, confirm) do
-          modify_unix_script(confirm)
-        end
-    end
-  end
-
-  defp modify_win32_script(confirm) do
-    script = "rel/env.bat.eex"
-
-    string =
-      "set ELIXIR_ERL_OPTIONS=-start_epmd false -epmd_module Elixir.Nbpm %ELIXIR_ERL_OPTIONS%\n\n"
-
-    pattern = ~r/(@echo off\n)/
-
-    case File.read(script) do
-      {:ok, contents} ->
-        modify_script(script, contents, string, pattern)
-
-      {:error, :enoent} ->
-        with :ok <- init_script(script, confirm) do
-          modify_win32_script(confirm)
+        with :ok <- init_script(filename, confirm) do
+          modify_os_script(confirm, filename, string, pattern)
         end
     end
   end
 
   defp modify_without_confirmation(confirm) do
-    with :ok <- modify_unix_script(confirm),
-         :ok <- modify_win32_script(confirm) do
+    with :ok <-
+           modify_os_script(
+             confirm,
+             "rel/env.sh.eex",
+             "export ELIXIR_ERL_OPTIONS=\"-start_epmd false -epmd_module Elixir.Nbpm $ELIXIR_ERL_OPTIONS\"\n",
+             ~r/(#!\/bin\/sh\n)/
+           ),
+         :ok <-
+           modify_os_script(
+             confirm,
+             "rel/env.bat.eex",
+             "set ELIXIR_ERL_OPTIONS=-start_epmd false -epmd_module Elixir.Nbpm %ELIXIR_ERL_OPTIONS%\n\n",
+             ~r/(@echo off\n)/
+           ) do
       :ok
     else
       {:stop, str} ->
