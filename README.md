@@ -6,13 +6,13 @@ Name-Based Port Mapper
 
 [![CI](https://github.com/pertsevds/nbpm/actions/workflows/ci.yml/badge.svg)](https://github.com/pertsevds/nbpm/actions/workflows/ci.yml)
 [![Coverage Status](https://coveralls.io/repos/github/pertsevds/nbpm/badge.svg?branch=main)](https://coveralls.io/github/pertsevds/nbpm?branch=main)
-[![License](https://img.shields.io/hexpm/l/nbpm.svg)](https://hex.pm/packages/nbpm)
-[![Hex pm](https://img.shields.io/hexpm/v/nbpm.svg?style=flat)](https://hex.pm/packages/nbpm)
-[![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/nbpm)
+[![Hex.pm License](https://img.shields.io/hexpm/l/nbpm)](https://hex.pm/packages/nbpm)
+[![Hex.pm Version](https://img.shields.io/hexpm/v/nbpm)](https://hex.pm/packages/nbpm)
+[![Hex.pm Docs](https://img.shields.io/badge/hex-docs-lightgreen)](https://hexdocs.pm/nbpm)
 [![Hex.pm Downloads](https://img.shields.io/hexpm/dt/nbpm)](https://hex.pm/packages/nbpm)
 
-With Nbpm you don't need EPMD daemon.  
-No additional daemons, no additional configs.  
+With Nbpm you don't need EPMD daemon.
+No additional daemons, no additional configs.
 Easy and simple distribution without EPMD.
 
 ## Features
