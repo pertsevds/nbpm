@@ -8,7 +8,7 @@ defmodule Nbpm.MixProject do
     [
       app: :nbpm,
       version: "0.3.0",
-      elixir: "~> 1.12",
+      elixir: "~> 1.13",
       elixirc_paths: elixirc_paths(Mix.env()),
       description: description(),
       package: package(),
