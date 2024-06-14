@@ -17,8 +17,8 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        elixir_version: ['1.16']
-        otp_version: ['26']
+        elixir_version: ['1.17']
+        otp_version: ['27']
     env:
       MIX_ENV: test
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
