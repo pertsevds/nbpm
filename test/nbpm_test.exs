@@ -19,13 +19,13 @@ defmodule NbpmTest do
 
   describe "name_to_port/1" do
     test "converts valid node names to ports" do
-      Enum.each(nodes_ports(), &assert_name_to_port/1)
+      Enum.each(names_to_ports(), &assert_name_to_port/1)
 
-      nodes_ports()
+      names_to_ports()
       |> Enum.map(fn {string, port} -> {to_charlist(string), port} end)
       |> Enum.each(&assert_name_to_port/1)
 
-      nodes_ports()
+      names_to_ports()
       |> Enum.map(fn {string, port} -> {String.to_atom(string), port} end)
       |> Enum.each(&assert_name_to_port/1)
     end
@@ -52,7 +52,7 @@ defmodule NbpmTest do
 
   describe "port_please/3" do
     test "returns the port for a valid node name" do
-      Enum.each(nodes_ports(), &assert_node_to_port/1)
+      Enum.each(names_to_ports(), &assert_node_to_port/1)
     end
   end
 
@@ -64,7 +64,7 @@ defmodule NbpmTest do
 
   describe "listen_port_please/2" do
     test "returns the port for a valid node name" do
-      Enum.each(nodes_ports(), &assert_node_to_listen_port/1)
+      Enum.each(names_to_ports(), &assert_node_to_listen_port/1)
     end
   end
 end

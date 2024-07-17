@@ -17,7 +17,7 @@ defmodule Mix.Tasks.Nbpm.GetPortNumber do
 
   @impl Mix.Task
   def run([]) do
-    app = Application.get_application(__MODULE__)
+    app = Mix.Project.config()[:app]
     {:ok, port_number} = Nbpm.name_to_port("#{app}")
     IO.puts(port_number)
   end

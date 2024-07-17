@@ -48,6 +48,7 @@ defmodule Nbpm.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps(styler_compat) when styler_compat in [:gt, :eq] do
     [
+      {:patch, "~> 0.13.1", only: [:test]},
       {:excoveralls, "~> 0.10", only: :test, runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:styler, "~> 0.11", only: [:dev, :test], runtime: false},
@@ -57,6 +58,7 @@ defmodule Nbpm.MixProject do
 
   defp deps(_) do
     [
+      {:patch, "~> 0.13.1", only: [:test]},
       {:excoveralls, "~> 0.10", only: :test, runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.30", only: :dev, runtime: false}

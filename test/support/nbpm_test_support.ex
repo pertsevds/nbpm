@@ -1,6 +1,6 @@
 defmodule NbpmTest.Support do
   @moduledoc false
-  def nodes_ports do
+  def names_to_ports do
     [
       {"88197my-random-name", 1_024},
       {"18736my-random-name", 65_535},
