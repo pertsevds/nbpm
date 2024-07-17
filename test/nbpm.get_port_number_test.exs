@@ -1,5 +1,6 @@
 defmodule Mix.Tasks.Nbpm.GetPortNumberTest do
   use ExUnit.Case, async: true
+  use Patch
 
   import ExUnit.CaptureIO
   import NbpmTest.Support
@@ -10,12 +11,19 @@ defmodule Mix.Tasks.Nbpm.GetPortNumberTest do
   end
 
   defp assert_app_name_to_listen_port({input, expected}) do
-    change_app_in_mix_project(input)
+    patch_app_in_mix_project(input)
     assert "#{expected}\n" == capture_io(fn -> Mix.Task.rerun("nbpm.get_port_number", []) end)
+    restore_app_in_mix_project()
   end
 
-  defp change_app_in_mix_project(app_name) do
+  defp patch_app_in_mix_project(app_name) do
+    cfg = Mix.Project.config()
+    cfg = Keyword.put(cfg, :app, :"#{app_name}")
+    patch(Mix.Project, :config, cfg)
+  end
 
+  defp restore_app_in_mix_project do
+    restore(Mix.Project)
   end
 
   describe "test get port number" do
