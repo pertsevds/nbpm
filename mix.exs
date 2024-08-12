@@ -43,7 +43,7 @@ defmodule Nbpm.MixProject do
   end
 
   # Run "mix help deps" to learn about dependencies.
-  defp deps() do
+  defp deps do
     [
       {:patch, "~> 0.13.1", only: [:test]},
       {:excoveralls, "~> 0.10", only: :test, runtime: false},
