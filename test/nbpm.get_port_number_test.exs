@@ -1,5 +1,5 @@
 defmodule Mix.Tasks.Nbpm.GetPortNumberTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case
   use Patch
 
   import ExUnit.CaptureIO
