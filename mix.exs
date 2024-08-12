@@ -2,13 +2,10 @@ defmodule Nbpm.MixProject do
   use Mix.Project
 
   def project do
-    elixir_version = System.version()
-    styler_compat = Version.compare(elixir_version, "1.14.0")
-
     [
       app: :nbpm,
       version: "0.3.1",
-      elixir: "~> 1.13",
+      elixir: "~> 1.15",
       elixirc_paths: elixirc_paths(Mix.env()),
       description: description(),
       package: package(),
@@ -20,7 +17,7 @@ defmodule Nbpm.MixProject do
         "coveralls.html": :test
       ],
       docs: docs(),
-      deps: deps(styler_compat)
+      deps: deps()
     ]
   end
 
@@ -46,21 +43,12 @@ defmodule Nbpm.MixProject do
   end
 
   # Run "mix help deps" to learn about dependencies.
-  defp deps(styler_compat) when styler_compat in [:gt, :eq] do
+  defp deps do
     [
       {:patch, "~> 0.13.1", only: [:test]},
       {:excoveralls, "~> 0.10", only: :test, runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:styler, "~> 0.11", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.30", only: :dev, runtime: false}
-    ]
-  end
-
-  defp deps(_) do
-    [
-      {:patch, "~> 0.13.1", only: [:test]},
-      {:excoveralls, "~> 0.10", only: :test, runtime: false},
-      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:styler, "~> 1.0", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.30", only: :dev, runtime: false}
     ]
   end
