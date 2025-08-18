@@ -11,5 +11,5 @@
   "makeup_erlang": {:hex, :makeup_erlang, "1.0.2", "03e1804074b3aa64d5fad7aa64601ed0fb395337b982d9bcf04029d68d51b6a7", [:mix], [{:makeup, "~> 1.0", [hex: :makeup, repo: "hexpm", optional: false]}], "hexpm", "af33ff7ef368d5893e4a267933e7744e46ce3cf1f61e2dccf53a111ed3aa3727"},
   "nimble_parsec": {:hex, :nimble_parsec, "1.4.2", "8efba0122db06df95bfaa78f791344a89352ba04baedd3849593bfce4d0dc1c6", [:mix], [], "hexpm", "4b21398942dda052b403bbe1da991ccd03a053668d147d53fb8c4e0efe09c973"},
   "patch": {:hex, :patch, "0.15.0", "947dd6a8b24a2d2d1137721f20bb96a8feb4f83248e7b4ad88b4871d52807af5", [:mix], [], "hexpm", "e8dadf9b57b30e92f6b2b1ce2f7f57700d14c66d4ed56ee27777eb73fb77e58d"},
-  "styler": {:hex, :styler, "1.4.1", "d3c4e90e000bec1cb61c49edea9c7c048bc1d89d5e3d88ef590313a3b793eea7", [:mix], [], "hexpm", "3539c44bc738f7da94462248f28009ca52a18a1b071fc07af11447ef5f13adbc"},
+  "styler": {:hex, :styler, "1.7.0", "3336e7547b5edaa3c5f7c861d8a45e1a450f9ed4db7d8f27ad54c12ab791bb66", [:mix], [], "hexpm", "ede783606fcd9bf06edfddbbedc36cc3a3af7b042cf0df8503aec0f82e016437"},
 }
