@@ -45,8 +45,8 @@ jobs:
       run: mix test
 
   test_linux_elixir_least_supported:
-    name: Ubuntu 20.04, Erlang/OTP ${{ matrix.otp_version }} Elixir ${{ matrix.elixir_version }}
-    runs-on: ubuntu-20.04
+    name: Ubuntu 22.04, Erlang/OTP ${{ matrix.otp_version }} Elixir ${{ matrix.elixir_version }}
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
